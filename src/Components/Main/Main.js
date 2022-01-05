@@ -9,7 +9,10 @@ import { EmailBody } from "../EmailContent/EmailBody";
 import { EmailHeader } from "../EmailContent/EmailContent";
 import { Header } from "../Header/Header";
 
-export const accountContext = React.createContext();
+export const accountContext = React.createContext({
+  account: "",
+  setAccount: () => {},
+});
 
 const Main = () => {
   const itemArr = [
@@ -22,7 +25,7 @@ const Main = () => {
     "sent",
   ];
   const dataMessages = require("../../messages.json");
-  const [account, setAccount] = useState("devgal@angular.dev");
+  const [account, setAccount] = useState("");
   const [folder, setFolder] = useState("inbox");
   const [emailSelected, setEmailSelected] = useState("");
   const [emailDisplay, setEmailDisplay] = useState(false);
@@ -53,7 +56,7 @@ const Main = () => {
   };
 
   const selectedEmail = (id) => {
-    const selected = dataMessages.find((email) => email._id === id);
+    const selected = data.find((email) => email._id === id);
     setEmailSelected(selected);
     setEmailDisplay(true);
   };
